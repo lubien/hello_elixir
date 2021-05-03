@@ -3,7 +3,7 @@
 #   - Look at the Dockerfile dependencies and follow it back to the base until
 #     reaching the actual alpine version.
 #     - https://hub.docker.com/_/elixir
-#  
+#
 #   - cat /etc/alpine-release
 #
 # Debugging Notes:
@@ -76,11 +76,9 @@ USER nobody:nobody
 
 COPY --from=build --chown=nobody:nobody /app/_build/prod/rel/hello_elixir ./
 
-ADD entrypoint.sh ./
-
 ENV HOME=/app
 ENV MIX_ENV=prod
 ENV SECRET_KEY_BASE=nokey
 ENV PORT=4000
-ENTRYPOINT ["/app/entrypoint.sh"]
+
 CMD ["bin/hello_elixir", "start"]
